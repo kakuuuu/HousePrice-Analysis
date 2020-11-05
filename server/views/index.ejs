@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+  </head>
+  <body>
+    <div class="api-doc">
+      <h1>HoursePrice API接口</h1>
+      <h2>用户接口列表</h2>
+      <hr />
+      <h4>登录</h4>
+      <p>| | |</p>
+      <p>|:-------------:|:-------------|</p>
+      <p>| <a href="#api-userLogin">api/userLogin</a> | 用户登录 |</p>
+      <h2>用户接口详情</h2>
+      <ul>
+        <li>#### api/userLogin</li>
+      </ul>
+      <hr />
+      <p>用户登录</p>
+      <h5>是否需要权限验证</h5>
+      <hr />
+      <p>否</p>
+      <h5>请求参数</h5>
+      <hr />
+      <p>| | 必选 | 类型 | 说明 |</p>
+      <p>|:-------------:|:-------------|:-------------|</p>
+      <p>| username | true | string | 用户名 |</p>
+      <p>| password | true | string | 密码 |</p>
+      <h5>请求方法</h5>
+      <hr />
+      <p>POST</p>
+      <h5>调用样例</h5>
+      <hr />
+      <p><code> </code> <code> api/userLogin </code> <code> </code></p>
+      <h5>返回结果</h5>
+      <hr />
+      <p><strong>* JSON示例 </strong>*</p>
+      <p><code> </code> `</p>
+      <p>{</p>
+      <pre><code>      status: 0,
+      desc: &quot;登录成功&quot;,
+      data:null</code></pre>
+      <p>}</p>
+      <p><code> </code> `</p>
+      <p><strong>* 错误返回值 </strong>*</p>
+      <p>{</p>
+      <pre><code>  status: 1,
+  desc: &quot;密码错误&quot;,
+  data:null</code></pre>
+      <p>}</p>
+      <p>
+        关于其它错误返回值与错误代码，参见 <a href="#errorcode">错误代码说明</a>
+      </p>
+      <h2>House信息接口列表</h2>
+      <hr />
+      <h4>读取接口</h4>
+      <p>| | |</p>
+      <p>|:-------------:|:-------------|</p>
+      <p>| <a href="#api-getHouseList">api/getHouseList</a> | 获取楼盘信息 |</p>
+      <h4>更新接口</h4>
+      <p>| | |</p>
+      <p>|:-------------:|:-------------|</p>
+      <p>| <a href="#api-updateHouse">api/updateHouse</a> | 更新楼盘信息 |</p>
+      <h2>House信息接口详情</h2>
+      <ul>
+        <li>#### api/getHouseList</li>
+      </ul>
+      <hr />
+      <p>获取楼盘信息</p>
+      <h5>是否需要权限验证</h5>
+      <hr />
+      <p>否</p>
+      <h5>请求参数</h5>
+      <hr />
+      <p>| | 必选 | 类型 | 说明 |</p>
+      <p>|:-------------:|:-------------|:-------------|</p>
+      <p>| city | true | string | 城市id |</p>
+      <h5>请求方法</h5>
+      <hr />
+      <p>GET</p>
+      <h5>调用样例</h5>
+      <hr />
+      <p>
+        <code> </code> <code> api/getHouseList?city=hz </code> <code> </code>
+      </p>
+      <h5>返回结果</h5>
+      <hr />
+      <p><strong>* JSON示例 </strong>*</p>
+      <p><code> </code> `</p>
+      <p>{</p>
+      <p>
+        data: [{city: &quot;hz&quot; info:
+        &quot;临安临安圣园路银城青山湖畔临枫园&quot; lat: 30.23055806947244 lng:
+        119.7523039810625 number: &quot;19000&quot; title:
+        &quot;银城青山湖畔&quot; unit: &quot;元/㎡(均价)&quot;}, …],
+      </p>
+      <p>desc: &quot;成功&quot;,</p>
+      <p>status: 0</p>
+      <p>}</p>
+      <p><code> </code> `</p>
+      <p><strong>* 错误返回值 </strong>*</p>
+      <p>{</p>
+      <pre><code>  status: 1,
+  desc: &quot;失败&quot;,
+  data:null</code></pre>
+      <p>}</p>
+      <p>
+        关于其它错误返回值与错误代码，参见 <a href="#errorcode">错误代码说明</a>
+      </p>
+      <ul>
+        <li>#### api/getHouseList</li>
+      </ul>
+      <hr />
+      <p>更新数据库信息</p>
+      <h5>是否需要权限验证</h5>
+      <hr />
+      <p>是</p>
+      <h5>请求参数</h5>
+      <hr />
+      <p>| | 必选 | 类型 | 说明 |</p>
+      <p>|:-------------:|:-------------|:-------------|</p>
+      <p>| city | true | string | 城市id |</p>
+      <h5>请求方法</h5>
+      <hr />
+      <p>POST</p>
+      <h5>调用样例</h5>
+      <hr />
+      <p><code> </code> <code> api/updateHouse </code> <code> </code></p>
+      <h5>返回结果</h5>
+      <hr />
+      <p><strong>* JSON示例 </strong>*</p>
+      <p><code> </code> `</p>
+      <p>{</p>
+      <pre><code>    status: 0,
+    desc: &quot;正在处理中&quot;,
+    data: null</code></pre>
+      <p>} <code> </code> `</p>
+      <p><strong>* 错误返回值 </strong>*</p>
+      <p>{</p>
+      <pre><code>  status: 1, 
+  desc: &quot;参数错误&quot;, 
+  data: null
+}</code></pre>
+      <p>
+        关于其它错误返回值与错误代码，参见 <a href="#errorcode">错误代码说明</a>
+      </p>
+      <h2>ErrorCode</h2>
+      <h3>错误代码对照表</h3>
+      <hr />
+      <h5>系统级错误</h5>
+      <hr />
+      <p>| 错误代码 | 返回msg | 详细描述 |</p>
+      <p>|:-------------:|:-------------|</p>
+      <p>| 400 | 系统错误，请稍候再试 | 请求参数有误 |</p>
+      <p>| 401 | 系统错误，请稍候再试 | 用户未登录 |</p>
+      <p>| 404 | 系统错误，请稍候再试 | 资源未找到 |</p>
+      <p>| 405 | 系统错误，请稍候再试 | 请求方法不支持 |</p>
+      <p>| 500 | 系统错误，请稍候再试 | 服务器错误 |</p>
+      <h5>业务级错误</h5>
+      <hr />
+      <p>| 错误代码 | 详细描述 |</p>
+      <p>|:-------------:|:-------------|</p>
+    </div>
+  </body>
+</html>
