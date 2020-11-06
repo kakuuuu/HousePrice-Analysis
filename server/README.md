@@ -5,7 +5,9 @@
 express+mysql+cheerio(爬虫)
 
 
+## 在线地址
 
+http://www.liaowang.xyz:3000/
 
 
 ## 用户接口列表
@@ -144,6 +146,7 @@ api/userLogin
 
 | city | true | string | 城市id |
 
+
 ##### 请求方法
 
 ---
@@ -223,18 +226,27 @@ status: 0
 
 | city | true | string | 城市id |
 
+| username | true | string | 用户名 |
+
+| password | true | string | 密码 |
+
+
 ##### 请求方法
 
 ---
 
 POST
 
+GET
+
 ##### 调用样例
 
 ---
 
 ` ` `
-api/updateHouse
+
+api/updateHouse?city=sh&username=admin&password=123456
+
 ` ` `
 
 ##### 返回结果

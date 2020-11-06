@@ -7,6 +7,10 @@
   <body>
     <div class="api-doc">
       <h1>HoursePrice API接口</h1>
+      <h2>技术栈</h2>
+      <p>express+mysql+cheerio(爬虫)</p>
+      <h2>在线地址</h2>
+      <p>http://www.liaowang.xyz:3000/</p>
       <h2>用户接口列表</h2>
       <hr />
       <h4>登录</h4>
@@ -122,12 +126,17 @@
       <p>| | 必选 | 类型 | 说明 |</p>
       <p>|:-------------:|:-------------|:-------------|</p>
       <p>| city | true | string | 城市id |</p>
+      <p>| username | true | string | 用户名 |</p>
+      <p>| password | true | string | 密码 |</p>
       <h5>请求方法</h5>
       <hr />
       <p>POST</p>
+      <p>GET</p>
       <h5>调用样例</h5>
       <hr />
-      <p><code> </code> <code> api/updateHouse </code> <code> </code></p>
+      <p><code> </code> `</p>
+      <p>api/updateHouse?city=sh&amp;username=admin&amp;password=123456</p>
+      <p><code> </code> `</p>
       <h5>返回结果</h5>
       <hr />
       <p><strong>* JSON示例 </strong>*</p>
