@@ -1,7 +1,7 @@
 import axios, { AxiosRequestConfig, Method } from 'axios';
 import storage from '@/utils/storage';
-import { Loading } from 'element-ui';
-import { ElLoadingComponent } from 'element-ui/types/loading';
+// import { Loading } from 'element-ui';
+// import { ElLoadingComponent } from 'element-ui/types/loading';
 
 // 定义接口
 interface PendingType {
@@ -20,7 +20,7 @@ const instance = axios.create({
     timeout: 100000,
     responseType: 'json'
 });
-let loadingInstance: ElLoadingComponent;
+// let loadingInstance: ElLoadingComponent;
 
 // 移除重复请求
 const removePending = (config: AxiosRequestConfig) => {
@@ -40,10 +40,10 @@ const removePending = (config: AxiosRequestConfig) => {
 // 添加请求拦截器
 instance.interceptors.request.use(
     request => {
-        loadingInstance = Loading.service({
-            text: '加载中',
-            background: 'rgba(0, 0, 0, 0.3)'
-        });
+        // loadingInstance = Loading.service({
+        //     text: '加载中',
+        //     background: 'rgba(0, 0, 0, 0.3)'
+        // });
 
         removePending(request);
         request.cancelToken = new CancelToken((c) => {
@@ -59,14 +59,14 @@ instance.interceptors.request.use(
 // 添加响应拦截器
 instance.interceptors.response.use(
     response => {
-        loadingInstance.close();
+        // loadingInstance.close();
 
         removePending(response.config);
 
         return response;
     },
     error => {
-        loadingInstance.close();
+        // loadingInstance.close();
         const response = error.response;
 
         // 根据返回的code值来做不同的处理(和后端约定)

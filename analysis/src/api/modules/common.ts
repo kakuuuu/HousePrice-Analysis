@@ -14,6 +14,9 @@ class Common extends Abstract {
     getMicroApp(params: MicroApp) {
         return this.getReq({ url: 'Common.MicroApp', params });
     }
+    getHouseList(params: any) {
+      return this.getReq({ url: 'getHouseList', params });
+  }
 }
 
 // 单列模式返回对象

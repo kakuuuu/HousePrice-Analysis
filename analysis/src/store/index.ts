@@ -1,8 +1,4 @@
-import { createStore } from 'vuex';
-
-import state from './state';
-import mulations from './mulations';
-import actions from './actions';
+import { createStore } from 'vuex'
 
 export default createStore({
   state: {

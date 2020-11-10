@@ -10,7 +10,10 @@ import { AxiosRequest, CustomResponse } from './types';
 import storage from '@/utils/storage';
 
 class Abstract {
-    protected baseURL: string = process.env.VUE_APP_BaseURL;
+    // protected baseURL: string = process.env.VUE_APP_BaseURL;
+    // protected baseURL: string = "www.liaowang.xyz:3000";
+    protected baseURL: string = "/api/api/";
+    // protected baseURL: string = "/api/api/getHouseList";
 
     protected headers: object = {
         ContentType: 'application/json;charset=UTF-8'
@@ -23,8 +26,8 @@ class Abstract {
         });
 
         // url解析
-        const _url = (url as string).split('.');
-        url = getUrl(_url[0], _url[1]);
+        // const _url = (url as string).split('.');
+        // url = getUrl(_url[0], _url[1]);
 
         return new Promise((resolve, reject) => {
             instance({
