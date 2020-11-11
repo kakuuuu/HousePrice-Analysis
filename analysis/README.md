@@ -1,4 +1,8 @@
-# analysis-poject
+# analysis
+
+## 技术栈
+
+Vue3.0 TypeScript Ant Design of Vue
 
 ## Project setup
 ```
