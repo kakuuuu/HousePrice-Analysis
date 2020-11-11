@@ -3,6 +3,7 @@ var router = express.Router();
 const db = require("../db/index.js");
 const sqlQuery = db.sqlQuery;
 const updateData = require('../module/Update.js');
+const deleteData =require("../module/Delete.js")
 
 router.get('/', async function (req, res) {
 
@@ -32,8 +33,9 @@ router.get('/', async function (req, res) {
             desc: "正在处理中",
             data: null
           })
-
-          updateData(req.query.city);
+          deleteData(req.query.city).then(res=>{
+            updateData(req.query.city);
+          })
         }
       }
     } else {

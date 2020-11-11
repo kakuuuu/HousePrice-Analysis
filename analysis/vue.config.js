@@ -1,4 +1,12 @@
 module.exports = {
+  chainWebpack: config => {
+    config
+      .plugin('html')
+      .tap(args => {
+        args[0].title= 'HousePriceAnalysis'
+        return args
+      })
+  },
   devServer: {
     open: false,
     disableHostCheck: true,

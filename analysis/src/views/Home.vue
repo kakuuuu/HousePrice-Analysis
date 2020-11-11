@@ -4,7 +4,6 @@
       <div class="title">
         HousePriceAnalysis
       </div>
-
       <a-menu theme="dark" v-model:selectedKeys="selectedKeys" mode="inline">
         <a-menu-item key="1">
           <desktop-outlined />
@@ -17,12 +16,8 @@
       </a-menu>
     </a-layout-sider>
     <a-layout>
-      <!-- <a-layout-header style="background: #fff; padding: 0" /> -->
       <a-layout-content style="margin: 0 16px">
         <HousePriceTable v-if="selectedKeys==1"></HousePriceTable>
-        <!-- <div :style="{ padding: '24px', background: '#fff', minHeight: '80vh' }">
-          content
-        </div> -->
       </a-layout-content>
     </a-layout>
   </a-layout>
@@ -61,3 +56,12 @@ export default defineComponent({
   }
 });
 </script>
+
+<style lang="scss" scoped>
+.title{
+  color: #ccc;
+  padding: 10px 0;
+
+}
+</style>
+
