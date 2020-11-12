@@ -29,13 +29,9 @@ class Abstract {
     responseType
   }: AxiosRequest): Promise<CustomResponse> {
     Object.assign(headers, {
-      token: storage().get("token") || storage("localstorage").get("token"),
-      "x-language": storage("localstorage").get("i18n")
+      // token: storage().get("token") || storage("localstorage").get("token")
     });
-
-    // url解析
-    // const _url = (url as string).split('.');
-    // url = getUrl(_url[0], _url[1]);
+    
 
     return new Promise((resolve, reject) => {
       instance({
