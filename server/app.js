@@ -13,11 +13,24 @@ var updateHouse=require('./routes/update');
 
 var app = express();
 
+var allowCrossDomain = function(req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+  // res.header('Access-Control-Allow-Headers', 'Content-Type');
+  // res.header('Access-Control-Allow-Credentials','true');
+  next();
+};
+
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-//中间件
+// 中间件
+
+// cors
+app.use(allowCrossDomain);
+
 // 日志
 app.use(logger('dev'));
 
