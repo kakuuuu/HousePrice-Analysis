@@ -1,2 +1,1 @@
 (window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["about"],{a55b:function(e,n,c){"use strict";c.r(n);var o=c("7a23"),t={class:"Login"},a=Object(o["createVNode"])("h1",null,"This is an Login page",-1);function i(e,n,c,i,s,r){return Object(o["openBlock"])(),Object(o["createBlock"])("div",t,[a])}const s={};s.render=i;n["default"]=s}}]);
-//# sourceMappingURL=about.7f594c9a.js.map

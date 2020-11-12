@@ -12,7 +12,7 @@ import storage from "@/utils/storage";
 class Abstract {
   // protected baseURL: string = process.env.VUE_APP_BaseURL;
   // protected baseURL: string = "www.liaowang.xyz:3000";
-  protected baseURL: string = "/api/api/";
+  protected baseURL: string = (process.env.NODE_ENV=='development')?"/api/api/":"http://www.liaowang.xyz:3000/api";
   // protected baseURL: string = "/api/api/getHouseList";
 
   protected headers: object = {
