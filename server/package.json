@@ -6,6 +6,8 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
+    "@sentry/node": "^5.27.4",
+    "@sentry/tracing": "^5.27.4",
     "axios": "^0.21.0",
     "cheerio": "^1.0.0-rc.3",
     "cookie-parser": "~1.4.4",
