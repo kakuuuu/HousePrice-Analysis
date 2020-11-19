@@ -65,22 +65,23 @@ export default defineComponent({
       formInline: <any>{
         city: ""
       },
-      city: <string>"",
-      cityOptions: <any>[
-        {
-          city: "hz",
-          title: "杭州"
-        },
-        {
-          city: "sh",
-          title: "上海"
-        }
-      ],
+      // cityOptions: <any>[
+      //   {
+      //     city: "hz",
+      //     title: "杭州"
+      //   },
+      //   {
+      //     city: "sh",
+      //     title: "上海"
+      //   }
+      // ],
       columns
     };
   },
   created() {
     this.getHouseList("hz");
+  },
+  mounted() {
   },
   methods: {
     getHouseList(city: string) {
