@@ -16,8 +16,7 @@
         </a-form-item>
       </a-form>
     </div>
-
-    <div id="main1">
+    <div id="map">
     </div>
   </div>
 </template>
@@ -25,12 +24,12 @@
 <script>
 import echarts from 'echarts';
 import { commonApi } from "@/api/index";
-// import BaiduMap from 'vue-baidu-map/components/map/Map.vue'
+import BMap from 'BMap';
+import '@/extension/bmap.min.js';
 
 
 export default {
   components: {
-    // BaiduMap
   },
   data() {
     return {
@@ -61,26 +60,117 @@ export default {
   created() {
     this.getHouseList("hz");
   },
-  mounted() {
-    this.printChart();
-  },
   methods: {
     printChart() {
-      var myChart = echarts.init(document.getElementById('main1'));
-
+      var myChart = echarts.init(document.getElementById('map'));
       // 指定图表的配置项和数据
+
+      let data = this.houseList.filter(item => { return item.unit == "元/㎡(均价)" });
+
+      data = data.map(item => {
+        return {
+          name: item.title,
+          value: [
+            item.lng, item.lat, Number(item.number)
+          ]
+        }
+      })
+      data.sort((a,b)=>{
+        return b.value[2]-a.value[2]  ;
+      })
+
       var option = {
-        xAxis: {
-          type: 'category',
-          data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+        backgroundColor: "transparent",
+        title: {
+          text: "楼盘房价",
+          left: "right"
         },
-        yAxis: {
-          type: 'value'
-        },
-        series: [{
-          data: [820, 932, 901, 934, 1290, 1330, 1320],
-          type: 'line'
-        }]
+        tooltip: {
+          trigger: "item",
+          formatter: function (params) {
+            return params.data.name + ":" + params.data.value[2]+"元/㎡(均价)";
+          }
+        }
+        ,
+        visualMap: [
+          {
+            type: 'piecewise',
+            min: 0,
+            max: 150000,
+            inRange: {
+              color: ['#0780cf','#fa6d1d','red'],
+              symbolSize: [5, 50]
+            },
+            outOfRange: {
+              symbolSize: [30, 100]
+            },
+            hoverLink: true,
+            top:0
+
+          }
+        ]
+        ,
+        series: [
+          {
+            name: "houseprice",
+            type: "scatter",
+            coordinateSystem: "bmap",
+            data: data,
+            label: {
+              formatter: "",
+              position: "right"
+            },
+            emphasis: {
+              label: {
+                show: true
+              }
+            }
+          }
+        ],
+        bmap: {
+          center: [data[5].value[0], data[5].value[1]],
+          zoom: 11,
+          roam: true,
+          mapStyle: {
+            styleJson: [
+              {
+                featureType: "road",
+                elementType: "all",
+                stylers: {
+                  lightness: 20
+                }
+              },
+              {
+                featureType: "highway",
+                elementType: "geometry",
+                stylers: {
+                  color: "#f49935"
+                }
+              },
+              {
+                featureType: "local",
+                elementType: "labels",
+                stylers: {
+                  visibility: "off"
+                }
+              },
+              {
+                featureType: "water",
+                elementType: "all",
+                stylers: {
+                  color: "#d1e5ff"
+                }
+              },
+              {
+                featureType: "city",
+                elementType: "labels",
+                stylers: {
+                  visibility: "off"
+                }
+              }
+            ]
+          }
+        }
       };
       myChart.setOption(option);
     },
@@ -91,6 +181,9 @@ export default {
         })
         .then(res => {
           this.houseList = res.data;
+          this.$nextTick(() => {
+            this.printChart();
+          })
         });
     }
 
@@ -100,13 +193,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-#main1 {
-  width: 500px;
-  height: 500px;
+#map {
+  width: 100%;
+  height: 90vh;
 }
-// .bm-view {
-//   width: 100%;
-//   height: 300px;
-// }
+.table-form {
+  margin: 5px 0 10px 0;
+}
+
 </style>
 

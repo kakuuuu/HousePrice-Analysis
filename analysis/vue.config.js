@@ -1,9 +1,12 @@
 module.exports = {
+  configureWebpack: {
+    externals: { "BMap": "BMap" }
+  },
   chainWebpack: config => {
     config
       .plugin('html')
       .tap(args => {
-        args[0].title= 'HousePriceAnalysis'
+        args[0].title = 'HousePriceAnalysis'
         return args
       })
   },
@@ -37,5 +40,5 @@ module.exports = {
    * https://cli.vuejs.org/zh/config/#productionsourcemap
    */
   productionSourceMap: false
-  
+
 }

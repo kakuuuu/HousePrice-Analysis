@@ -23,7 +23,7 @@
         </a-form>
       </div>
     </div>
-    <a-table :columns="columns" :data-source="houseList" rowKey="lat">
+    <a-table :columns="columns" :data-source="houseList" rowKey="lat" >
     </a-table>
   </div>
 </template>
@@ -65,16 +65,6 @@ export default defineComponent({
       formInline: <any>{
         city: ""
       },
-      // cityOptions: <any>[
-      //   {
-      //     city: "hz",
-      //     title: "杭州"
-      //   },
-      //   {
-      //     city: "sh",
-      //     title: "上海"
-      //   }
-      // ],
       columns
     };
   },
