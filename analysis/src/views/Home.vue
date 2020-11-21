@@ -4,6 +4,9 @@
       <div class="title">
         HousePriceAnalysis
       </div>
+      <a-button type="link" block @click="gotoLogin">
+        login
+      </a-button>
       <a-menu theme="dark" v-model:selectedKeys="selectedKeys" mode="inline">
         <a-menu-item key="1">
           <desktop-outlined />
@@ -14,6 +17,7 @@
           <span>地图可视化</span>
         </a-menu-item>
       </a-menu>
+
     </a-layout-sider>
     <a-layout>
       <a-layout-content>
@@ -40,6 +44,11 @@ export default defineComponent({
     return {
       selectedKeys: <any>["1"]
     };
+  },
+  methods: {
+    gotoLogin() {
+      this.$router.push("/login");
+    }
   }
 });
 </script>
