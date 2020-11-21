@@ -3,5 +3,6 @@ module.exports={
   suffixUrl:".fang.lianjia.com/loupan/pg",
   startPage:1,
   endPage:100,
-  akKey:"7aallzX2CFByIWhD49O2PSGtFkDDseLI"
+  akKey:"7aallzX2CFByIWhD49O2PSGtFkDDseLI",
+  secretOrPrivateKey:"secret"
 }

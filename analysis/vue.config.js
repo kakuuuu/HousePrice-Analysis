@@ -26,6 +26,7 @@ module.exports = {
       '/api': {
         // 本地测试地址（可以随时发布的）
         target: "http://www.liaowang.xyz:3000",
+        // target: "http://localhost:3000/",
         ws: true, // proxy websockets
         changeOrigin: true, // needed for virtual hosted sites
         pathRewrite: {

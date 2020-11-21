@@ -10,6 +10,9 @@ var usersRouter = require('./routes/users');
 var getHousePrice =require('./routes/gethouse');
 var getSetKey=require('./routes/getkey');
 var updateHouse=require('./routes/update');
+const bodyParser=require('body-parser');
+const expressJwt = require('express-jwt');
+const config=require('./bin/config');
 
 // Sentry错误监控
 const Sentry = require("@sentry/node");
@@ -57,6 +60,21 @@ var allowCrossDomain = function(req, res, next) {
 
 app.use(allowCrossDomain);
 
+app.use(expressJwt({
+  secret: config.secretOrPrivateKey,
+  algorithms:['HS256']   
+}).unless({
+	path: ['/','/api/userLogin','/api/getHouseList']  //除了这个地址，其他的URL都需要验证
+}));
+
+// app.use(function (err, req, res, next) {
+//   if (err.name === 'UnauthorizedError') {	
+// 	  //  这个需要根据自己的业务逻辑来处理（ 具体的err值 请看下面）
+//     res.status(401).send('invalid token...');
+//   }
+// });
+
+
 // 日志
 app.use(logger('dev'));
 
@@ -76,6 +94,12 @@ app.use(session({
 }))
 // cookie
 app.use(cookieParser("xzsagjasoigjasoi"));
+
+// post
+// app.use(bodyParser.urlencoded({ extended: false }));
+// app.use(bodyParser.json());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 
 app.use(Sentry.Handlers.tracingHandler());

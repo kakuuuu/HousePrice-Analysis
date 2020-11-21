@@ -1,3 +1,8 @@
-export interface MicroApp {
-    city: string;
+export interface HouseApp {
+  city: string;
+}
+
+export interface UserApp {
+  username: string;
+  password: string;
 }

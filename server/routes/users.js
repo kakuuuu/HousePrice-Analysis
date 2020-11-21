@@ -2,6 +2,8 @@ var express = require('express');
 var router = express.Router();
 const db = require("../db/index.js");
 const sqlQuery = db.sqlQuery;
+const jwt = require('jsonwebtoken');
+const config=require('../bin/config');
 
 router.get('/',async function(req,res){
 
@@ -24,11 +26,22 @@ router.get('/',async function(req,res){
           data:null
         })
       }else{
-        req.session.username = req.query.username;
+        const token = 'Bearer ' + jwt.sign(
+          {
+            username: req.query.username
+          },
+          config.secretOrPrivateKey,
+          {
+            expiresIn: 3600 * 24 * 3
+          }
+        )
+        
         res.send({
           status: 0,
           desc: "登录成功",
-          data:null
+          data:{
+            token:token
+          }
         })
       }
     }

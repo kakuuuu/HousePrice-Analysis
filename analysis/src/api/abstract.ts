@@ -1,22 +1,20 @@
 /**
  * axios基础构建
- * @date 2019-12-24
  */
 
-import Vue from "vue";
-import getUrl from "./config";
 import instance from "./intercept";
 import { AxiosRequest, CustomResponse } from "./types";
 import storage from "@/utils/storage";
+import { message } from "ant-design-vue";
 
 class Abstract {
-  // protected baseURL: string = process.env.VUE_APP_BaseURL;
-  // protected baseURL: string = "www.liaowang.xyz:3000";
-  protected baseURL: string = (process.env.NODE_ENV=='development')?"/api/api/":"http://www.liaowang.xyz:3000/api";
-  // protected baseURL: string = "/api/api/getHouseList";
+  protected baseURL: string =
+    process.env.NODE_ENV == "development"
+      ? "/api/api/"
+      : "http://www.liaowang.xyz:3000/api";
 
   protected headers: object = {
-    ContentType: "application/json;charset=UTF-8"
+    'Content-Type': "application/json;charset=UTF-8"
   };
 
   private apiAxios({
@@ -29,9 +27,9 @@ class Abstract {
     responseType
   }: AxiosRequest): Promise<CustomResponse> {
     Object.assign(headers, {
-      // token: storage().get("token") || storage("localstorage").get("token")
+      Authorization:
+        storage().get("token") || storage("localstorage").get("token")
     });
-    
 
     return new Promise((resolve, reject) => {
       instance({
@@ -55,28 +53,27 @@ class Abstract {
                 origin: res.data
               });
             } else {
-              // Vue.prototype.$message({ type: 'error', message: res.data?.errorMessage || (url + '请求失败') });
+              message.error( res.data?.desc || url + "请求失败");
               resolve({
                 status: true,
-                message: res.data?.errorMessage || url + "请求失败",
+                message: res.data?.desc || url + "请求失败",
                 desc: res.data.desc,
                 data: res.data?.data,
                 origin: res.data
               });
             }
           } else {
+            message.error( res.data?.desc || url + "请求失败");
             resolve({
               status: false,
-              message: res.data?.errorMessage || url + "请求失败",
+              message: res.data?.desc || url + "请求失败",
               desc: res.data.desc,
               data: null
             });
           }
         })
         .catch((err: any) => {
-          const message =
-            err?.data?.errorMessage || err?.message || url + "请求失败";
-          // Vue.prototype.$toast({ message });
+          message.error(err?.data?.errorMessage || err?.message || url + "请求失败");
           // eslint-disable-next-line
           reject({ status: false, message, data: null });
         });
