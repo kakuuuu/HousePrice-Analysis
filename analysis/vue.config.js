@@ -1,14 +1,27 @@
+const CompressionWebpackPlugin = require("compression-webpack-plugin");
+const IS_PRODUCTION = process.env.NODE_ENV === "production";
+
 module.exports = {
   configureWebpack: {
     externals: { "BMap": "BMap" }
   },
   chainWebpack: config => {
-    config
-      .plugin('html')
-      .tap(args => {
-        args[0].title = 'HousePriceAnalysis'
-        return args
-      })
+    config.plugin('html').tap(args => {
+      args[0].title = 'HousePriceAnalysis'
+      return args
+    })
+    if (IS_PRODUCTION) {
+      config
+        .plugin("compression")
+        .use(CompressionWebpackPlugin)
+        .tap(() => [
+          {
+            test: /\.js$|\.html$|\.css/, // 匹配文件名
+            threshold: 1024, // 超过1k进行压缩
+            deleteOriginalAssets: false, // 是否删除源文件
+          }
+        ]);
+    }
   },
   devServer: {
     open: false,
